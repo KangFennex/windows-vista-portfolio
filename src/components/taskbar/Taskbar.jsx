@@ -8,7 +8,7 @@ import StartMenu from "./taskbar-components/StartMenu";
 import ActiveApps from "./taskbar-components/ActiveApps";
 
 const Taskbar = () => {
-    const [displayStartMenu, setDisplayStartMenu] = useState(true);
+    const [displayStartMenu, setDisplayStartMenu] = useState(false);
     const [shortcutsExpand, setShortcutsExpand] = useState(false);
     const [taskbarApps, setTaskbarApps] = useState(["Explorer", "MSN"]);
 
