@@ -1,0 +1,27 @@
+:root {
+--darkturquoise: #2f4a41;
+--darkturquoise-transparent: rgba(47, 74, 65, 0.98);
+--darkturquoise-transparent2: rgba(47, 74, 65, 0.88);
+--darkturquoise-transparent3: rgba(47, 74, 65, 0.48);
+--white40: rgba(255, 255, 255, 0.4);
+--white70: rgba(255, 255, 255, 0.7);
+--white80: rgba(255, 255, 255, 0.8);
+--white90: rgba(255, 255, 255, 0.98);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background-image: url('./assets/background/vista-background.jpg');
+  overflow-x: hidden;
+  overflow-y: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
