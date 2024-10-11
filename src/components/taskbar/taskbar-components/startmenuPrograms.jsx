@@ -2,7 +2,7 @@ import emule from "../../../assets/icons/emuleIcon.ico";
 import excel from "../../../assets/icons/excelIcon.ico";
 import frontpage from "../../../assets/icons/frontpageIcon.ico";
 import limewire from "../../../assets/icons/limewire.ico";
-import mahjong from "../../../assets/icons/mahjongIcon.ico";
+import mahjong from "../../../assets/icons/MahjongIcon.ico";
 import msn from "../../../assets/icons/MSNIcon.ico";
 import movies from "../../../assets/icons/MoviesIcon.ico";
 import vlc from "../../../assets/icons/vlcIcon.ico";
