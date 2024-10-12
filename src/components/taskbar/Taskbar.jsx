@@ -7,6 +7,7 @@ import TaskbarClock from "./taskbar-components/TaskbarClock";
 import StartMenu from "./taskbar-components/StartMenu";
 import ActiveApps from "./taskbar-components/ActiveApps";
 import { AnimatePresence, motion } from "framer-motion";
+import TrayIcons from "./taskbar-components/TrayIcons";
 
 const Taskbar = () => {
     const [displayStartMenu, setDisplayStartMenu] = useState(false);
@@ -91,7 +92,7 @@ const Taskbar = () => {
                                     <img
                                         alt={icon.alt}
                                         src={icon.icon}
-                                        className={icon.className}
+                                        value={icon.value}
                                     />
                                 </div>
                             )
@@ -112,11 +113,13 @@ const Taskbar = () => {
                             taskbarApps={taskbarApps}
                             handleRemoveTaskbarApp={handleRemoveTaskbarApp} />
                     </div>
+                    <div className="taskbar__system-icons-and-time">
                     <div className="taskbar__system-icons">
-
+                        <TrayIcons />
                     </div>
                     <div className="taskbar__time">
                         <TaskbarClock />
+                    </div>
                     </div>
                 </div>
             </nav>

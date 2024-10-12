@@ -104,6 +104,12 @@
         display: flex;
     }
 
+    &__system-icons-and-time {
+        display: flex;
+        margin-left: auto;
+        gap: 1rem;
+    }
+
     &__system-icons {
         display: flex;
     }
@@ -118,6 +124,5 @@
         font-size: 1.2rem;
         opacity: 0.9;
         cursor: default;
-        margin-left: auto;
     }
 }

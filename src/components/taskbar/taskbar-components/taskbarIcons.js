@@ -7,6 +7,13 @@ import moviesIcon from "../../../assets/icons/MoviesIcon.ico";
 import solitaryIcon from "../../../assets/icons/SolitaryIcon.ico";
 import wordIcon from "../../../assets/icons/WordIcon.ico";
 
+import mp3Player from "../../../assets/icons/H&D026.ico";
+import mike from "../../../assets/icons/H&D054.ico";
+import keyboard from "../../../assets/icons/KB013.ico";
+import signal from "../../../assets/icons/Net054.ico";
+import sound from "../../../assets/icons/Tray087.ico";
+import network from "../../../assets/icons/Tray112.ico";
+
 const taskbarIcons = [
     {
         id: 0,
@@ -58,4 +65,37 @@ const taskbarIcons = [
     },
 ]
 
-export {taskbarIcons}
+const trayIconsList = [
+    {
+        id: 0,
+        icon: mike,
+        alt:"Mike",
+        value: "Mike",
+    },
+    {
+        id: 1,
+        icon: keyboard,
+        alt:"Keyboard",
+        value: "Keyboard",
+    },
+    {
+        id: 2,
+        icon: signal,
+        alt:"Signal",
+        value: "Signal",
+    },
+    {
+        id: 3,
+        icon: sound,
+        alt:"Sound",
+        value: "Sound",
+    },
+    {
+        id: 4,
+        icon: network,
+        alt:"Network",
+        value: "Network",
+    },
+]
+
+export {taskbarIcons, trayIconsList}
