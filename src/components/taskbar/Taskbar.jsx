@@ -6,6 +6,7 @@ import { taskbarIcons } from "./taskbar-components/taskbarIcons";
 import TaskbarClock from "./taskbar-components/TaskbarClock";
 import StartMenu from "./taskbar-components/StartMenu";
 import ActiveApps from "./taskbar-components/ActiveApps";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Taskbar = () => {
     const [displayStartMenu, setDisplayStartMenu] = useState(false);
@@ -32,16 +33,46 @@ const Taskbar = () => {
         }
     }
 
-    console.log(displayStartMenu)
+    const springFromBottom = {
+        hidden: {
+            y: 800,
+        },
+        visible: {
+            y: 0,
+            transition: {
+                type: "spring",
+                stiffness: 50,
+                mass: 0.4,
+                damping: 8,
+            },
+        },
+        exit: {
+            y: 800,
+            transition: {
+                type: "spring",
+                stiffness: 50,
+                mass: 0.4,
+                damping: 8,
+            },
+        },
+    };
 
     return (
         <div>
             <nav className="taskbar">
                 <div className="taskbar__container">
+                    <AnimatePresence>
                     {displayStartMenu && (
-                        <StartMenu />
+                        <motion.div
+                        variants={springFromBottom}
+                        initial="hidden"
+                        animate="visible"
+                        exit="exit"
+                        >
+                        <StartMenu setDisplayStartMenu={setDisplayStartMenu} />
+                        </motion.div>
                     )}
-
+</AnimatePresence>
                     <div className="taskbar__start-menu">
                         <img
                             alt="Start Menu Icon"

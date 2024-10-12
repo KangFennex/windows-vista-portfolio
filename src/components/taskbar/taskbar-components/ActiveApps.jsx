@@ -29,7 +29,7 @@ const ActiveApps = ({ taskbarApps, handleRemoveTaskbarApp}) => {
 
     return (
         <div className="active-apps">
-            {taskbarApps.map((app, index) => {
+            {taskbarApps.slice(0, 5).map((app, index) => {
                 const isActive = activeApp === app;
                 return (
                     <div key={index}>

@@ -1,10 +1,11 @@
 .active-apps {
-    width: 100%;
+    width: fit-content;
     height: 40px;
     color: white;
     display: flex;
-    gap: 0.2rem;
+    margin-right: auto;
     align-items: center;
+    gap: 0.2rem;
 
     &-app {
         display: flex;
