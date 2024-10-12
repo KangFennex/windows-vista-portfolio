@@ -37,5 +37,15 @@
             inset -15px 0 35px -10px rgb(57, 122, 233),
             inset 5px 5px 20px rgba(255, 255, 255, 0.8);
         }
+
+        &--preview {
+            display: none;
+
+            &.hovered {
+                display: block;
+                position: absolute;
+                bottom: 50px
+            }
+        }
     }
 }
