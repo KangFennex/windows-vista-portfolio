@@ -1,25 +1,24 @@
 import "./Taskbar.scss";
 import startMenuIcon from "../../assets/icons/StartIcon.ico";
-import { MdOutlineNavigateNext } from "react-icons/md";
 import { useState } from "react";
-import { taskbarIcons } from "./taskbar-components/taskbarIcons";
 import TaskbarClock from "./taskbar-components/TaskbarClock";
 import StartMenu from "./taskbar-components/StartMenu";
 import ActiveApps from "./taskbar-components/ActiveApps";
 import { AnimatePresence, motion } from "framer-motion";
 import TrayIcons from "./taskbar-components/TrayIcons";
+import ShortcutsApps from "./taskbar-components/ShortcutsApps";
+import calcWindowSize from "../utils/calcWindowSize";
+
 
 const Taskbar = () => {
     const [displayStartMenu, setDisplayStartMenu] = useState(false);
     const [shortcutsExpand, setShortcutsExpand] = useState(false);
-    const [taskbarApps, setTaskbarApps] = useState(["Explorer", "MSN"]);
+    const [taskbarApps, setTaskbarApps] = useState(["Firefox", "MSN"]);
+    const { width } = { calcWindowSize }
+
 
     const handleDisplayStartMenu = () => {
         setDisplayStartMenu(!displayStartMenu)
-    }
-
-    const handleShortcutsExpand = () => {
-        setShortcutsExpand(!shortcutsExpand)
     }
 
     const handleAddTaskbarApps = (app) => {
@@ -63,17 +62,17 @@ const Taskbar = () => {
             <nav className="taskbar">
                 <div className="taskbar__container">
                     <AnimatePresence>
-                    {displayStartMenu && (
-                        <motion.div
-                        variants={springFromBottom}
-                        initial="hidden"
-                        animate="visible"
-                        exit="exit"
-                        >
-                        <StartMenu setDisplayStartMenu={setDisplayStartMenu} />
-                        </motion.div>
-                    )}
-</AnimatePresence>
+                        {displayStartMenu && (
+                            <motion.div
+                                variants={springFromBottom}
+                                initial="hidden"
+                                animate="visible"
+                                exit="exit"
+                            >
+                                <StartMenu setDisplayStartMenu={setDisplayStartMenu} />
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
                     <div className="taskbar__start-menu">
                         <img
                             alt="Start Menu Icon"
@@ -82,44 +81,25 @@ const Taskbar = () => {
                             onClick={handleDisplayStartMenu}
                         />
                     </div>
-                    <div className={`taskbar__icon-section ${shortcutsExpand ? "expanded" : ""}`}>
-                        {taskbarIcons.slice(0, shortcutsExpand ? taskbarIcons.length : 4).map((icon, i) => {
-                            return (
-                                <div
-                                    key={i}
-                                    className="taskbar__icon-section--icon"
-                                    onClick={() => handleAddTaskbarApps(icon.value)}>
-                                    <img
-                                        alt={icon.alt}
-                                        src={icon.icon}
-                                        value={icon.value}
-                                    />
-                                </div>
-                            )
-                        })}
-                        <div className={`taskbar__icon-section--expand-arrows ${shortcutsExpand ? "expanded" : ""}`}
-                            onClick={handleShortcutsExpand}
-                        >
-                            <MdOutlineNavigateNext size={15} color="white"
-                                className="taskbar__icon-section--expand-arrow"
-                            />
-                            <MdOutlineNavigateNext size={15} color="white"
-                                className="taskbar__icon-section--expand-arrow"
-                                id="second-arrow" />
-                        </div>
-                    </div>
-                    <div className="taskbar__apps">
+                    <nav className={`taskbar__icons ${shortcutsExpand ? "expanded" : ""}`}>
+                        <ShortcutsApps
+                            shortcutsExpand={shortcutsExpand}
+                            setShortcutsExpand={setShortcutsExpand}
+                            handleAddTaskbarApps={handleAddTaskbarApps}
+                        />
+                    </nav>
+                    <nav className="taskbar__apps">
                         <ActiveApps
                             taskbarApps={taskbarApps}
                             handleRemoveTaskbarApp={handleRemoveTaskbarApp} />
-                    </div>
+                    </nav>
                     <div className="taskbar__system-icons-and-time">
-                    <div className="taskbar__system-icons">
-                        <TrayIcons />
-                    </div>
-                    <div className="taskbar__time">
-                        <TaskbarClock />
-                    </div>
+                        <div className="taskbar__system-icons">
+                            <TrayIcons />
+                        </div>
+                        <div className="taskbar__time">
+                            <TaskbarClock />
+                        </div>
                     </div>
                 </div>
             </nav>

@@ -1,4 +1,4 @@
-import explorerIcon from "../../../assets/icons/ExplorerIcon.ico";
+import firefox from "../../../assets/icons/Firefox-logo.svg";
 import msnIcon from "../../../assets/icons/MSNIcon.ico";
 import notepadIcon from "../../../assets/icons/NotepadIcon.ico";
 import wmpIcon from "../../../assets/icons/WMPIcon.ico";
@@ -7,7 +7,7 @@ import moviesIcon from "../../../assets/icons/MoviesIcon.ico";
 import solitaryIcon from "../../../assets/icons/SolitaryIcon.ico";
 import wordIcon from "../../../assets/icons/WordIcon.ico";
 
-import mp3Player from "../../../assets/icons/H&D026.ico";
+
 import mike from "../../../assets/icons/H&D054.ico";
 import keyboard from "../../../assets/icons/KB013.ico";
 import signal from "../../../assets/icons/Net054.ico";
@@ -17,9 +17,9 @@ import network from "../../../assets/icons/Tray112.ico";
 const taskbarIcons = [
     {
         id: 0,
-        icon: explorerIcon,
-        alt:"Explorer",
-        value:"Explorer",
+        icon: firefox,
+        alt:"Firefox",
+        value:"Firefox",
     },
     {
         id: 1,

@@ -22,7 +22,8 @@
         0 0 2px rgba(255, 255, 255, 0.8);
 
         &.shrink {
-            width: 50px;
+            justify-content: center;
+            width: 45px;
 
             & h4 {
                 display: none;
