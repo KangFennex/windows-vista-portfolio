@@ -57,7 +57,7 @@ const StartMenu = ({ setDisplayStartMenu }) => {
         }
 
         document.addEventListener("mousedown", handleClickOutside);
-        document.addEventListener("resize", handleWindowResize);
+        window.addEventListener("resize", handleWindowResize);
 
         return () => {
             document.removeEventListener("mousedown", handleClickOutside);

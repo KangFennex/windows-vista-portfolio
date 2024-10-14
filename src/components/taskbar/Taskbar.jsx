@@ -7,15 +7,34 @@ import ActiveApps from "./taskbar-components/ActiveApps";
 import { AnimatePresence, motion } from "framer-motion";
 import TrayIcons from "./taskbar-components/TrayIcons";
 import ShortcutsApps from "./taskbar-components/ShortcutsApps";
-import calcWindowSize from "../utils/calcWindowSize";
 
+const springFromBottom = {
+    hidden: {
+        y: 800,
+    },
+    visible: {
+        y: 0,
+        transition: {
+            type: "spring",
+            stiffness: 50,
+            mass: 0.4,
+            damping: 8,
+        },
+    },
+    exit: {
+        y: 800,
+        transition: {
+            type: "spring",
+            stiffness: 50,
+            mass: 0.4,
+            damping: 8,
+        },
+    },
+};
 
 const Taskbar = () => {
     const [displayStartMenu, setDisplayStartMenu] = useState(false);
-    const [shortcutsExpand, setShortcutsExpand] = useState(false);
     const [taskbarApps, setTaskbarApps] = useState(["Firefox", "MSN"]);
-    const { width } = { calcWindowSize }
-
 
     const handleDisplayStartMenu = () => {
         setDisplayStartMenu(!displayStartMenu)
@@ -32,30 +51,6 @@ const Taskbar = () => {
             setTaskbarApps(prevApps => prevApps.filter(apps => apps !== app));
         }
     }
-
-    const springFromBottom = {
-        hidden: {
-            y: 800,
-        },
-        visible: {
-            y: 0,
-            transition: {
-                type: "spring",
-                stiffness: 50,
-                mass: 0.4,
-                damping: 8,
-            },
-        },
-        exit: {
-            y: 800,
-            transition: {
-                type: "spring",
-                stiffness: 50,
-                mass: 0.4,
-                damping: 8,
-            },
-        },
-    };
 
     return (
         <div>
@@ -81,10 +76,8 @@ const Taskbar = () => {
                             onClick={handleDisplayStartMenu}
                         />
                     </div>
-                    <nav className={`taskbar__icons ${shortcutsExpand ? "expanded" : ""}`}>
+                    <nav className="taskbar__icons">
                         <ShortcutsApps
-                            shortcutsExpand={shortcutsExpand}
-                            setShortcutsExpand={setShortcutsExpand}
                             handleAddTaskbarApps={handleAddTaskbarApps}
                         />
                     </nav>

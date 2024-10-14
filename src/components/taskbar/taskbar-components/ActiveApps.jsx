@@ -20,8 +20,7 @@ const renderTaskbarApp = (app, isActive, hoveredApp, handleRemoveTaskbarApp, set
                 setActiveApp(app);
             }}
             onMouseOver={() => setHoveredApp(app)}
-            // The below does not work at the moment
-            onMouseLeave={() => setActiveApp(null)}
+            onMouseLeave={() => setHoveredApp(null)}
         >
             {appIcon && <img src={appIcon}  alt={app} />}
             <h4>{app}</h4>
