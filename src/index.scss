@@ -3,6 +3,7 @@
 --darkturquoise-transparent: rgba(47, 74, 65, 0.98);
 --darkturquoise-transparent2: rgba(47, 74, 65, 0.88);
 --darkturquoise-transparent3: rgba(47, 74, 65, 0.48);
+--darkturquoise-transparent4: rgba(47, 74, 65, 0.38);
 --white40: rgba(255, 255, 255, 0.4);
 --white70: rgba(255, 255, 255, 0.7);
 --white80: rgba(255, 255, 255, 0.8);
@@ -17,7 +18,7 @@
 
 body {
   margin: 0;
-  background-image: url('./assets/background/leaves-bg.jpg');
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-image: url('./assets/background/leaves-bg.jpg');
 }
 

@@ -17,15 +17,15 @@ const renderTrayIcons = (icon) => {
 const TrayIcons = () => {
     const { width } = calcWindowSize();
 
-    const getVisibleIconsRange = () => {
+    const getVisibleTrayIconsRange = () => {
         if (width <= 750) return 2;
-        if (width <= 1000) return 5;
-        return 6
+        if (width <= 1000) return 3;
+        return 4
     }
 
     return (
         <div className="tray-icons">
-            {trayIconsList.slice(0,getVisibleIconsRange()).map((icon, index) => (
+            {trayIconsList.slice(0, getVisibleTrayIconsRange()).map((icon, index) => (
                 <span key={index}>
                     {renderTrayIcons(icon)}
                 </span>

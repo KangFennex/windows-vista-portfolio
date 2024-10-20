@@ -1,5 +1,5 @@
 import "./ActiveApps.scss";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { taskbarIcons } from "../../taskbar/taskbar-components/taskbarIcons";
 import calcWindowSize from "../../utils/calcWindowSize";
 
@@ -8,24 +8,53 @@ const matchIcon = (appName) => {
     return taskbarIcon ? taskbarIcon.icon : null;
 };
 
-const renderTaskbarApp = (app, isActive, hoveredApp, handleRemoveTaskbarApp, setActiveApp, setHoveredApp, width) => {
+
+const delayDisplayPreview = (app, setActiveApp) => {
+    setTimeout(() => {
+        setActiveApp(app);
+    }, 300)
+}
+
+const delayRemovePreview = (setHoveredApp, timeoutRef)  => {
+    if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+    }
+
+    timeoutRef.current = setTimeout(() => {
+        setHoveredApp(null);
+    }, 800)
+}
+
+const renderTaskbarApp = (app, isActive, hoveredApp, handleRemoveTaskbarApp, setActiveApp, setHoveredApp, width, timeoutRef) => {
     const appIcon = matchIcon(app)
 
     return (
         <>
         <nav 
-            className={`active-apps-app ${width < 750 ? "shrink" : ""} ${isActive ? "active" : ""}`}
+            className={`active-apps--app ${width < 750 ? "shrink" : ""} ${isActive ? "active" : ""}`}
             onClick={() => {
                 handleRemoveTaskbarApp(app);
                 setActiveApp(app);
             }}
-            onMouseOver={() => setHoveredApp(app)}
-            onMouseLeave={() => setHoveredApp(null)}
+            onMouseOver={() => {
+                if (timeoutRef.current) {
+                    clearTimeout(timeoutRef.current)
+                }
+                delayDisplayPreview(app, setHoveredApp)}}
+            onMouseLeave={() => delayRemovePreview(setHoveredApp, timeoutRef)}
         >
             {appIcon && <img src={appIcon}  alt={app} />}
             <h4>{app}</h4>
         </nav>
-        <nav className={`active-apps-app--preview ${hoveredApp ? "hovered" : ""}`}>
+        <nav 
+        className={`active-apps--app--preview ${hoveredApp ? "hovered" : ""}`}
+        onMouseOver={() => {
+            if (timeoutRef.current) {
+                clearTimeout(timeoutRef.current);
+            }
+        }}
+        onMouseLeave={() => delayRemovePreview(setHoveredApp, timeoutRef)}
+        >
             <div>
                 <h4>I am a preview</h4>
             </div>
@@ -38,6 +67,7 @@ const ActiveApps = ({ taskbarApps, handleRemoveTaskbarApp }) => {
     const [activeApp, setActiveApp] = useState(null);
     const [hoveredApp, setHoveredApp] = useState(null);
     const { width } = calcWindowSize();
+    const timeoutRef = useRef(null);
 
     const adaptSliceToWidth = () => {
         const taskbarMaxWidth = 1000; // The max width of the taskbar in px
@@ -65,7 +95,7 @@ const ActiveApps = ({ taskbarApps, handleRemoveTaskbarApp }) => {
 
                 return (
                     <div key={index}>
-                        {renderTaskbarApp(app, isActive, isHovered, handleRemoveTaskbarApp, setActiveApp, setHoveredApp, width)}
+                        {renderTaskbarApp(app, isActive, isHovered, handleRemoveTaskbarApp, setActiveApp, setHoveredApp, width, timeoutRef)}
                     </div>
                 );
             })}
