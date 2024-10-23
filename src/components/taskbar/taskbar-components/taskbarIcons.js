@@ -67,25 +67,7 @@ const taskbarIcons = [
 
 const trayIconsList = [
     {
-        id: 0,
-        icon: mike,
-        alt:"Mike",
-        value: "Mike",
-    },
-    {
         id: 1,
-        icon: keyboard,
-        alt:"Keyboard",
-        value: "Keyboard",
-    },
-    {
-        id: 2,
-        icon: signal,
-        alt:"Signal",
-        value: "Signal",
-    },
-    {
-        id: 3,
         icon: sound,
         alt:"Sound",
         value: "Sound",
@@ -96,6 +78,26 @@ const trayIconsList = [
         alt:"Network",
         value: "Network",
     },
+    {
+        id: 1,
+        icon: keyboard,
+        alt:"Keyboard",
+        value: "Keyboard",
+    },
+    {
+        id: 0,
+        icon: mike,
+        alt:"Mike",
+        value: "Mike",
+    },
+    {
+        id: 2,
+        icon: signal,
+        alt:"Signal",
+        value: "Signal",
+    },
+
+
 ]
 
 export {taskbarIcons, trayIconsList}

@@ -1,13 +1,14 @@
 import "./ActiveApps.scss";
 import { useState, useRef } from "react";
 import { taskbarIcons } from "../../taskbar/taskbar-components/taskbarIcons";
+import { IoClose } from "react-icons/io5";
 import calcWindowSize from "../../utils/calcWindowSize";
+import pikachu from "../../../assets/temp/pikachu.png";
 
 const matchIcon = (appName) => {
     const taskbarIcon =  taskbarIcons.find((icon) => icon.value === appName);
     return taskbarIcon ? taskbarIcon.icon : null;
 };
-
 
 const delayDisplayPreview = (app, setActiveApp) => {
     setTimeout(() => {
@@ -32,10 +33,7 @@ const renderTaskbarApp = (app, isActive, hoveredApp, handleRemoveTaskbarApp, set
         <>
         <nav 
             className={`active-apps--app ${width < 750 ? "shrink" : ""} ${isActive ? "active" : ""}`}
-            onClick={() => {
-                handleRemoveTaskbarApp(app);
-                setActiveApp(app);
-            }}
+            onClick={() => setActiveApp(app)}
             onMouseOver={() => {
                 if (timeoutRef.current) {
                     clearTimeout(timeoutRef.current)
@@ -56,7 +54,13 @@ const renderTaskbarApp = (app, isActive, hoveredApp, handleRemoveTaskbarApp, set
         onMouseLeave={() => delayRemovePreview(setHoveredApp, timeoutRef)}
         >
             <div>
-                <h4>I am a preview</h4>
+                <img alt="Pikachu" src={pikachu} />
+                <IoClose 
+                size={25} 
+                color="red"
+                className="active-apps--app--preview-close"
+                onClick={() => handleRemoveTaskbarApp(app)}
+                />
             </div>
         </nav>
         </>
@@ -70,11 +74,11 @@ const ActiveApps = ({ taskbarApps, handleRemoveTaskbarApp }) => {
     const timeoutRef = useRef(null);
 
     const adaptSliceToWidth = () => {
-        const taskbarMaxWidth = 1000; // The max width of the taskbar in px
+        const taskbarMaxWidth = 768; // The max width of the taskbar in px
         const appWidthLarge = 200; // Width of each app when screen width > 750px
         const appWidthSmall = 50;  // Width of each app when screen width <= 750px
     
-        if (width > 750) {
+        if (width > 768) {
             // Calculate how many apps fit into the taskbar with large app width
             const availableSpace = Math.min(width, taskbarMaxWidth);
             const numberOfApps = Math.floor(availableSpace / appWidthLarge);

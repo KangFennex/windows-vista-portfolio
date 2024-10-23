@@ -8,7 +8,7 @@
     left: 0;
     border-top-left-radius: 3px;
     border-top-right-radius: 3px;
-    z-index: 1;
+    z-index: -100;
     border: 0.3px solid rgba(0, 0, 0, 0.5);
     box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.8),
         0 0 4px rgba(0, 0, 0, 0.5);
@@ -48,14 +48,14 @@
             &.expanded {
                 overflow-y: scroll;
                 overflow-x: hidden;
-    
+
                 & .start-menu__program {
                     height: 20px;
-    
+
                     & img {
                         width: 20px;
                     }
-    
+
                     & h3 {
                         font-weight: 400;
                     }
@@ -83,6 +83,29 @@
                 margin-top: 0.3rem;
                 margin-left: 0.5rem;
                 font-size: 0.8rem;
+            }
+        }
+
+        &__search-results {
+            height: 100%;
+            width: auto;
+            overflow-y: scroll;
+
+            &--result {
+                width: 100%;
+                height: 40px;
+                display: flex;
+                align-items: center;
+
+                & div img {
+                    width: 40px
+                }
+
+                & h3 {
+                    font-size: 0.8rem;
+                    font-weight: 600;
+                    margin-left: 0.6rem;
+                }
             }
         }
     }
