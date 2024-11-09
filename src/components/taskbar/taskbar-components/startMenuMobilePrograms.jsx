@@ -25,6 +25,7 @@ import quick from "../../../assets/icons/quicktime.png";
 import acrobat from "../../../assets/icons/Acrobat_2006.svg";
 import halo from "../../../assets/icons/halo.png";
 import translate from "../../../assets/icons/translate.png";
+import weather from "../../../assets/icons/weather.png";
 
 const programListMobile = [
     {
@@ -83,10 +84,9 @@ const programListMobile = [
         src: daemon,
     },
     {
-        alt: "Windows Calendar",
-        title: "Windows Calendar",
-        src: folder,
-        app: folder,
+        alt: "Weather",
+        title: "Weather",
+        src: weather,
     },
     {
         alt: "Windows Defender",
