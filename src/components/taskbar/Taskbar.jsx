@@ -7,6 +7,8 @@ import ActiveApps from "./taskbar-components/ActiveApps";
 import { AnimatePresence, motion } from "framer-motion";
 import TrayIcons from "./taskbar-components/TrayIcons";
 import ShortcutsApps from "./taskbar-components/ShortcutsApps";
+import calcWindowSize from "../utils/calcWindowSize";
+import StartMenuMobile from "./taskbar-components/StartMenuMobile";
 
 const springFromBottom = {
     hidden: {
@@ -35,6 +37,7 @@ const springFromBottom = {
 const Taskbar = () => {
     const [displayStartMenu, setDisplayStartMenu] = useState(false);
     const [taskbarApps, setTaskbarApps] = useState(["Firefox", "MSN"]);
+    const { width } = calcWindowSize();
 
     const handleDisplayStartMenu = () => {
         setDisplayStartMenu(!displayStartMenu)
@@ -56,18 +59,24 @@ const Taskbar = () => {
         <div>
             <nav className="taskbar">
                 <div className="taskbar__container">
-                    <AnimatePresence>
-                        {displayStartMenu && (
-                            <motion.div
-                                variants={springFromBottom}
-                                initial="hidden"
-                                animate="visible"
-                                exit="exit"
-                            >
-                                <StartMenu setDisplayStartMenu={setDisplayStartMenu} />
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
+                    {displayStartMenu && (
+                        width > 768 ? (
+                            <AnimatePresence>
+                                <motion.div
+                                    variants={springFromBottom}
+                                    initial="hidden"
+                                    animate="visible"
+                                    exit="exit"
+                                >
+                                    <StartMenu setDisplayStartMenu={setDisplayStartMenu} />
+                                </motion.div>
+                            </AnimatePresence>
+                        ) : (
+                            <StartMenuMobile />
+                        )
+                    )}
+
+
                     <div className="taskbar__start-menu">
                         <img
                             alt="Start Menu Icon"
