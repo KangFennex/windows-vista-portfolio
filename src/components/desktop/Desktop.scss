@@ -1,14 +1,15 @@
 .desktop {
     width: 100vw;
-    height: 90vh;
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
+    background-image: url("../../assets/background/leaves-bg.jpg");
+    background-size: cover;
 }
 
 @media screen and (min-width: 768px) {
     .desktop {
-        width: auto;
-        height: auto;
+
     }
 }
