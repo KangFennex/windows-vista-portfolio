@@ -85,24 +85,28 @@ const Taskbar = () => {
                             onClick={handleDisplayStartMenu}
                         />
                     </div>
-                    <nav className="taskbar__icons">
-                        <ShortcutsApps
-                            handleAddTaskbarApps={handleAddTaskbarApps}
-                        />
-                    </nav>
-                    <nav className="taskbar__apps">
-                        <ActiveApps
-                            taskbarApps={taskbarApps}
-                            handleRemoveTaskbarApp={handleRemoveTaskbarApp} />
-                    </nav>
-                    <div className="taskbar__system-icons-and-time">
-                        <div className="taskbar__system-icons">
-                            <TrayIcons />
-                        </div>
-                        <div className="taskbar__time">
-                            <TaskbarClock />
-                        </div>
-                    </div>
+                    {width > 768 && (
+                        <>
+                            <nav className="taskbar__icons">
+                                <ShortcutsApps
+                                    handleAddTaskbarApps={handleAddTaskbarApps}
+                                />
+                            </nav>
+                            <nav className="taskbar__apps">
+                                <ActiveApps
+                                    taskbarApps={taskbarApps}
+                                    handleRemoveTaskbarApp={handleRemoveTaskbarApp} />
+                            </nav>
+                            <div className="taskbar__system-icons-and-time">
+                                <div className="taskbar__system-icons">
+                                    <TrayIcons />
+                                </div>
+                                <div className="taskbar__time">
+                                    <TaskbarClock />
+                                </div>
+                            </div>
+                        </>
+                    )}
                 </div>
             </nav>
         </div>
