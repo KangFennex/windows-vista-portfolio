@@ -3,7 +3,7 @@ import { useState } from "react";
 import msnChat from "../../assets/apps/msn/msn-chat.png";
 import { PiWarningCircleDuotone } from "react-icons/pi";
 import AiChatbotAvatar from "../../assets/temp/msn-7.5.png"
-import duck from "../../assets/temp/RubberDuck.jpg";
+import duck from "../../assets/temp/rubberDuck.jpg";
 
 const actionsMenuItems = [
     {
