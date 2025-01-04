@@ -1,6 +1,6 @@
 import "./Desktop.scss";
 import desktopIcons from "../desktop/desktop-components/desktop-icons/desktopIcons";
-import Draggable from "react-draggable";
+import Draggable from "/react-draggable";
 import { v4 as uuidv4 } from "uuid";
 import Msn from "../apps/Msn";
 import TodoApp from "../widgets/TodoApp";
