@@ -1,9 +1,9 @@
 import "./ShortcutsApps.scss";
-import { MdOutlineNavigateNext } from "react-icons/md";
 import { taskbarIcons } from "../taskbar-components/taskbarIcons";
 import calcWindowSize from "../../utils/calcWindowSize";
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 const springFromBottom = {
     hidden: {
@@ -29,7 +29,7 @@ const springFromBottom = {
     },
 };
 
-const ShortcutsApps = ({ handleAddTaskbarApps }) => {
+const ShortcutsApps = ({ handleAddTaskbarApps, handleDisplayApp }) => {
     const { width } = calcWindowSize();
     const [displayShortcuts, setDisplayShortcuts] = useState(false);
     const shortcutsRef = useRef();
@@ -37,30 +37,25 @@ const ShortcutsApps = ({ handleAddTaskbarApps }) => {
     const getVisibleIconsRange = () => {
         if (width <= 750) return 2;
         if (width <= 1000) return 4;
-        return 6
-    }
+        return 6;
+    };
 
     const handleDisplayShortcuts = () => {
-        setDisplayShortcuts(!displayShortcuts)
-    }
+        setDisplayShortcuts(!displayShortcuts);
+    };
 
     useEffect(() => {
         function handleClickOutside(event) {
-
-            // Check if the click target contains the expand icons element
-            const iconEl = document.querySelector(".taskbar__icons--expand-arrows");
+            const iconEl = document.querySelector(".shortcut-icons--expand-toggle");
             if (iconEl && iconEl.contains(event.target)) {
                 return;
             }
 
-            // Make the shortcuts menu disappear if you click outside of it
             if (shortcutsRef.current && !shortcutsRef.current.contains(event.target)) {
                 setDisplayShortcuts(false);
             }
         }
 
-        // Make the shortcuts menu disappear if you resize the screen
-        // Does not work right now - maybe fix with {width} = useWindowSize ?
         function handleWindowResize() {
             setDisplayShortcuts(false);
         }
@@ -72,33 +67,33 @@ const ShortcutsApps = ({ handleAddTaskbarApps }) => {
             document.removeEventListener("mousedown", handleClickOutside);
             window.removeEventListener("resize", handleWindowResize);
         };
-    }, [displayShortcuts, setDisplayShortcuts])
+    }, [displayShortcuts, setDisplayShortcuts]);
+
+    const handleDisplayApps = (app) => {
+        handleAddTaskbarApps(app);
+        handleDisplayApp(app);
+    };
 
     return (
-        <>
+        <div className={`shortcut-icons ${displayShortcuts ? "expanded" : ""}`}>
             {taskbarIcons.slice(0, getVisibleIconsRange()).map((icon) => {
                 return (
                     <div
                         key={icon.value}
-                        className="taskbar__icons--icon"
-                        onClick={() => handleAddTaskbarApps(icon.value)}>
-                        <img
-                            alt={icon.alt}
-                            src={icon.icon}
-                            value={icon.value}
-                        />
+                        className="shortcut-icons--icon"
+                        onClick={() => handleDisplayApps(icon.value)}
+                    >
+                        <img alt={icon.alt} src={icon.icon} value={icon.value} />
                     </div>
-                )
+                );
             })}
-            <div className={`taskbar__icons--expand-arrows ${displayShortcuts ? "expanded" : ""}`}
+            <div>
+
+                <BsThreeDotsVertical 
                 onClick={handleDisplayShortcuts}
-            >
-                <MdOutlineNavigateNext size={15} color="white"
-                    className="taskbar__icons--expand-arrows--arrow"
-                />
-                <MdOutlineNavigateNext size={15} color="white"
-                    className="taskbar__icons--expand-arrows--arrow"
-                />
+                className="shortcut-icons--expand-toggle"
+                size={15} />
+
                 <nav>
                     <AnimatePresence>
                         {displayShortcuts && (
@@ -107,33 +102,28 @@ const ShortcutsApps = ({ handleAddTaskbarApps }) => {
                                 initial="hidden"
                                 animate="visible"
                                 exit="exit"
-                                className="taskbar__icons--expanded-icons"
+                                className="shortcut-icons--expand-menu"
                                 ref={shortcutsRef}
                             >
-                                {taskbarIcons.slice(getVisibleIconsRange(), taskbarIcons.length).map((icon) => {
+                                {taskbarIcons.slice(getVisibleIconsRange()).map((icon) => {
                                     return (
                                         <div
                                             key={icon.value}
-                                            className="taskbar__icons--expanded-icons--icon"
-                                            onClick={() => handleAddTaskbarApps(icon.value)}
+                                            className="shortcut-icons--expand-menu-item"
+                                            onClick={() => handleDisplayApps(icon.value)}
                                         >
-                                            <img
-                                                alt={icon.alt}
-                                                src={icon.icon}
-                                                value={icon.value}
-                                            />
+                                            <img alt={icon.alt} src={icon.icon} value={icon.value} />
                                             <h4>{icon.value}</h4>
                                         </div>
-                                    )
+                                    );
                                 })}
                             </motion.div>
                         )}
                     </AnimatePresence>
                 </nav>
             </div>
-        </>
-    )
-}
+        </div>
+    );
+};
 
 export default ShortcutsApps;
-

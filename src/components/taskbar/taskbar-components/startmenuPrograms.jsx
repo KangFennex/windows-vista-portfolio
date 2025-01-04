@@ -71,6 +71,7 @@ const programListShort = [
     {
         alt: "MSN Messenger",
         title: "MSN Messenger",
+        value: "MSN",
         src: msn,
     },
     {

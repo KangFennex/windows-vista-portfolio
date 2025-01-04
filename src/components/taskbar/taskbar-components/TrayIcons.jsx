@@ -1,9 +1,9 @@
 import calcWindowSize from "../../utils/calcWindowSize";
 import "./TrayIcons.scss";
-import { IoIosArrowUp } from "react-icons/io";
 import { trayIconsList } from "./taskbarIcons";
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { BsThreeDotsVertical } from "react-icons/bs";
 
 const springFromBottom = {
     hidden: {
@@ -94,9 +94,8 @@ const TrayIcons = () => {
             ))}
             <span
                 className={`${expandTrayIcons ? "expanded" : ""}`}
-            ><IoIosArrowUp
+            ><BsThreeDotsVertical
                     size={15}
-                    color="white"
                     className="tray-icons__expand-icon"
                     onClick={handleExpandTrayIcons}
                 /></span>

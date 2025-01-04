@@ -1,0 +1,77 @@
+.sticky-note {
+    display: flex;
+    position: relative;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 200px;
+    height: 200px;
+    background-color: #3a3939;
+    border-radius: 5px;
+    padding: 10px;
+    padding-right: 0;
+    box-shadow: inset 0 0 2px var(--off-white), 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    overflow: hidden;
+
+    & header {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 10px;
+        transition: height 0.2s ease-in-out;
+
+        &.focused {
+            height: 25px;
+        }
+    }
+
+    &--nav {
+        width: 100%;
+        &--icons {
+            padding: 0.2rem 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    }
+
+    .color-select {
+        display: flex;
+    }
+
+    & textarea {
+        width: 100%;
+        height: 90%;
+        background: none;
+        border: none;
+        color: var(--white80);
+        font-size: 0.8rem;
+        font-weight: 500;
+        outline: none;
+        text-align: left;
+        padding-right: 2px;
+        padding-bottom: 20px;
+        margin-top: 20px;
+        resize: none;
+        scrollbar-width: thin;
+        scrollbar-color: grey transparent;
+
+        &::-webkit-scrollbar {
+            width: 2px;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background-color: grey;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-button {
+            display: none;
+        }
+    }
+}

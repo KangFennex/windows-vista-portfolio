@@ -1,5 +1,4 @@
 import "./Taskbar.scss";
-import startMenuIcon from "../../assets/icons/StartIcon.ico";
 import { useState } from "react";
 import TaskbarClock from "./taskbar-components/TaskbarClock";
 import StartMenu from "./taskbar-components/StartMenu";
@@ -8,7 +7,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import TrayIcons from "./taskbar-components/TrayIcons";
 import ShortcutsApps from "./taskbar-components/ShortcutsApps";
 import calcWindowSize from "../utils/calcWindowSize";
-import StartMenuMobile from "./taskbar-components/StartMenuMobile";
+import fennec from "../../assets/start-menu/Renard-logo.png";
 
 const springFromBottom = {
     hidden: {
@@ -34,9 +33,9 @@ const springFromBottom = {
     },
 };
 
-const Taskbar = () => {
+const Taskbar = ({ handleDisplayApp }) => {
     const [displayStartMenu, setDisplayStartMenu] = useState(false);
-    const [taskbarApps, setTaskbarApps] = useState(["Firefox", "MSN"]);
+    const [taskbarApps, setTaskbarApps] = useState(["Firefox", "MSN", "Emule", "Excel", "Word", "Notepad", "Winamp", "Nero", "Daemon"]);
     const { width } = calcWindowSize();
 
     const handleDisplayStartMenu = () => {
@@ -53,6 +52,7 @@ const Taskbar = () => {
         if (taskbarApps.includes(app)) {
             setTaskbarApps(prevApps => prevApps.filter(apps => apps !== app));
         }
+        handleDisplayApp(app)
     }
 
     return (
@@ -60,7 +60,6 @@ const Taskbar = () => {
             <nav className="taskbar">
                 <div className="taskbar__container">
                     {displayStartMenu && (
-                        width > 768 ? (
                             <AnimatePresence>
                                 <motion.div
                                     variants={springFromBottom}
@@ -68,28 +67,27 @@ const Taskbar = () => {
                                     animate="visible"
                                     exit="exit"
                                 >
-                                    <StartMenu setDisplayStartMenu={setDisplayStartMenu} />
+                                    <StartMenu 
+                                    setDisplayStartMenu={setDisplayStartMenu}
+                                    handleDisplayApp={handleDisplayApp}
+                                    />
                                 </motion.div>
                             </AnimatePresence>
-                        ) : (
-                            <StartMenuMobile />
-                        )
                     )}
 
 
                     <div className="taskbar__start-menu">
                         <img
                             alt="Start Menu Icon"
-                            src={startMenuIcon}
+                            src={fennec}
                             className="taskbar__start-menu--icon"
                             onClick={handleDisplayStartMenu}
                         />
                     </div>
-                    {width > 768 && (
-                        <>
                             <nav className="taskbar__icons">
                                 <ShortcutsApps
                                     handleAddTaskbarApps={handleAddTaskbarApps}
+                                    handleDisplayApp={handleDisplayApp}
                                 />
                             </nav>
                             <nav className="taskbar__apps">
@@ -105,8 +103,6 @@ const Taskbar = () => {
                                     <TaskbarClock />
                                 </div>
                             </div>
-                        </>
-                    )}
                 </div>
             </nav>
         </div>

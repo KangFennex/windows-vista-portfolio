@@ -1,0 +1,332 @@
+// https://github.com/ManzDev/twitch-msn-messenger
+
+// Colors and Fonts
+$vista-blue: #b3d6f8; // Light blue gradient stop
+$vista-dark-blue: #2375c6; // Dark blue gradient stop
+$vista-border-gray: #d3d3d3; // Border color for window edges
+$vista-shadow: rgba(0, 0, 0, 0.2); // Shadow for depth
+$vista-text: #333; // Dark text
+$vista-link-blue: #0066cc; // Link blue
+
+$font-family-vista: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+.msn {
+    width: 600px; // Default window width
+    height: 400px; // Default window height
+    background: linear-gradient(135deg, $vista-blue, $vista-dark-blue); // Classic Vista gradient
+    border: 1px solid $vista-border-gray; // Subtle border
+    border-radius: 10px; // Smooth rounded edges
+    box-shadow: 0 4px 8px $vista-shadow; // Depth like Vista windows
+    overflow: hidden; // For a clean window look
+    display: flex;
+    flex-direction: column;
+
+    &.flip3D {
+        transform: perspective(1000px) rotateY(30deg) translateX(200px);
+    }
+    
+
+    .msn-header {
+        height: 30px;
+        background: $vista-dark-blue;
+        color: white;
+        font-family: $font-family-vista;
+        font-size: 18px;
+        font-weight: bold;
+        line-height: 50px;
+        padding: 20px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        box-shadow: inset 0 3px 5px 0 rgba(136, 185, 241, 0.922);
+
+        .msn-header-title {
+            display: flex;
+            align-items: center;
+
+            .msn-logo {
+                display: flex;
+                width: 30px;
+                height: 30px;
+                margin-right: 10px;
+                z-index: 100;
+
+                & img {
+                    width: 100%;
+                }
+            }
+
+            span {
+                font-size: 18px;
+                font-weight: bold;
+            }
+        }
+
+        .msn-buttons {
+            display: flex;
+            gap: 10px;
+
+            button {
+                width: 20px;
+                height: 20px;
+                border: none;
+                cursor: pointer;
+                border-radius: 3px;
+                background-color: transparent;
+                box-shadow: inset 0 1px 3px 1px rgba(221, 233, 247, 0.922);
+                transition: all 0.2s ease-in-out;
+
+                &:hover {
+                    background: $vista-blue;
+                }
+
+                &.minimize {
+                    & nav {
+                        width: 7px;
+                        height: 2px;
+                        background-color: #f5f3f3;
+                        border-radius: 1px;
+                        margin-left: 20%;
+                        margin-top: 50%;
+                        box-shadow: 0 0 5px 1px rgba(221, 233, 247, 0.922);
+                    }
+                }
+
+                &.maximize {
+                    & nav {
+                        width: 12px;
+                        height: 12px;
+                        margin: auto;
+                        border-radius: 2px;
+                        box-shadow: inset 0 2px 4px 1px rgba(221, 233, 247, 0.922);
+
+                    }
+                }
+
+                &.close {
+                    background-color: rgb(232, 60, 60);
+
+                    & nav {
+                        width: 13px;
+                        height: 1.3px;
+                        background-color: #f5f3f3;
+                        border-radius: 1px;
+                        margin-left: 20%;
+                        margin-top: 5%;
+                        position: relative;
+                        box-shadow: 0 0 5px 1px rgba(221, 233, 247, 0.922);
+                        transform: rotate(45deg);
+
+                        &::before,
+                        &::after {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: 0;
+                            width: 13px;
+                            height: 1.3px;
+                            background-color: #f5f3f3;
+                            border-radius: 1px;
+                            box-shadow: 0 0 5px 1px rgba(221, 233, 247, 0.922);
+                        }
+
+                        &::before {
+                            transform: rotate(-90deg);
+                        }
+
+                    }
+                }
+            }
+        }
+    }
+
+    .msn-menu {
+        &--items {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.2rem;
+            background-color: #e8e8d5;
+
+            & nav h4 {
+                font-size: 0.8rem;
+                font-weight: 400;
+
+                & span {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+
+    &-actions-menu {
+        &--items {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            font-size: 0.8rem;
+            padding-right: 10rem;
+            background-color: rgb(228, 244, 248);
+            box-shadow: inset 0 0 10px rgba(247, 254, 255, 0.3),
+                inset 0 0 5px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(0, 0, 0, 0.2);
+            background-image:
+            linear-gradient(to bottom,
+            rgba(255, 255, 255, 0.9) 0%, /* Bright white at the top */
+            rgba(200, 200, 220, 0.4) 20%, /* Softer light gray transition */
+            rgba(119, 122, 155, 0.2) 30%, /* Subtle darker tone */
+            rgba(152, 154, 168, 0.15) 40%, /* Blurred blending starts */
+            rgba(83, 96, 137, 0.1) 50%, /* Blurry white hint */
+            rgba(152, 154, 168, 0.15) 60%, /* Transition back from blur */
+            rgba(119, 122, 155, 0.2) 70%, /* Subtle darker tone */
+            rgba(200, 200, 220, 0.4) 85%, /* Softer transition back */
+            rgba(255, 255, 255, 0.9) 100% /* Bright white at the bottom */
+        );
+        }
+
+        ;
+
+        &--item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 0.3rem;
+
+            & img {
+                width: 35px;
+            }
+        }
+    }
+
+    .msn-body {
+        flex-grow: 1;
+        background: white;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        display: grid;
+        grid-template-rows: 60% 40%;
+        height: 100%;
+
+        .msn-chat-list {
+            height: 100%;
+            flex: 1;
+            overflow-y: auto;
+            padding-right: 10px;
+            grid-row: 1 / 2;
+            display: grid;
+            grid-template-columns: 80% 20%;
+
+            .chat-box {
+                margin-bottom: 15px;
+                display: flex;
+                flex-direction: column;
+                grid-column: 1 / 2;
+                border: 1px solid black;
+                border-top-left-radius: 10px;
+                border-top-right-radius: 10px;
+                border-bottom-left-radius: 3px;
+                border-bottom-right-radius: 3px;
+
+                .chat-header {
+                    font-size: 0.8rem;
+                    border-bottom: 1px solid black;
+                    padding: 0.2rem;
+                }
+
+                .chat-warning {
+                    display: flex;
+                    margin: 0.02rem 0.05rem;
+                    border: 0.5px solid black;
+                    border-radius: 2px;
+                    padding: 0.3rem;
+                    font-size: 0.8rem;
+                }
+
+                .chat-text {
+                    font-family: $font-family-vista;
+                    font-size: 14px;
+                    line-height: 1.4;
+                    color: $vista-text;
+                    padding-left: 0.5rem;
+
+                    .chat-username {
+                        font-weight: bold;
+                        color: $vista-link-blue;
+                    }
+                }
+            }
+
+            .receiver-avatar {
+                grid-column: 2 / 3;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+
+                &--avatar {
+                    width: 100px;
+                }
+            }
+
+        }
+
+        .msn-chat-input {
+            grid-row: 2 / 3;
+            display: grid;
+            grid-template-columns: 80% 20%;
+
+            .chat-input {
+                grid-column: 1 / 2;
+                position: relative;
+                height: 100%;
+
+                input[type="text"] {
+                    flex: 1;
+                    padding: 10px;
+                    font-family: $font-family-vista;
+                    font-size: 14px;
+                    border: 1px solid $vista-border-gray;
+                    border-radius: 5px;
+                    outline: none;
+                    background-color: grey;
+                    height: 90%;
+                    width: 100%;
+
+                    &:focus {
+                        border-color: $vista-dark-blue;
+                    }
+                }
+
+                button {
+                    position: absolute;
+                    right: 0.6rem;
+                    padding: 10px 20px;
+                    font-family: $font-family-vista;
+                    font-size: 14px;
+                    background: $vista-dark-blue;
+                    color: white;
+                    border: none;
+                    border-radius: 5px;
+                    cursor: pointer;
+                    transition: background 0.2s ease-in-out;
+
+                    &:hover {
+                        background: $vista-blue;
+                    }
+                }
+            }
+
+            .sender-avatar {
+                grid-column: 2 / 3;
+                display: flex;
+                justify-content: center;
+                align-items: flex-start;
+
+                &--avatar {
+                    width: 100px;
+                }
+            }
+
+        }
+    }
+}

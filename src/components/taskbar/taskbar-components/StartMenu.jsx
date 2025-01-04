@@ -17,7 +17,7 @@ const renderShortcutList = (list) => {
     });
 };
 
-const StartMenu = ({ setDisplayStartMenu }) => {
+const StartMenu = ({ setDisplayStartMenu, handleDisplayApp }) => {
     const [expandAllProgram, setExpandAllProgram] = useState(false)
     const [powerSize, setPowerSize] = useState(15);
     const [lockSize, setLockSize] = useState(15);

@@ -1,0 +1,68 @@
+.winamp {
+    display: flex;
+    justify-content: center;
+    align-items: center;   
+    position: absolute;
+    top: 8%;
+    right: 20%;
+    width: 200px;
+    height: 100px;
+
+    &__container {
+        width: 100%;
+        height: 100%;
+    }
+
+    &__background {
+        position: relative;
+        width: 165px;
+        height: 100px;
+    }
+
+    &__icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 165px;
+        height: 100px;
+        z-index: 100;
+    }
+
+    &__screen-icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 165px;
+        height: 100px;
+    }
+
+    &__play {
+        position: absolute;
+        left: -6px;
+        z-index: 90;
+    }
+
+    &__n {
+        position: absolute;
+        left: 12px;
+        top: 13.5px;
+        z-index: 101;
+        transform: scale(0.8);
+    }
+
+    &__h {
+        position: absolute;
+        left: 12px;
+        top: 13.5px;
+        z-index: 102;
+        transform: scale(0.8);
+    }
+
+    &__hit {
+        position: absolute;
+        left: 12px;
+        top: 13.5px;
+        z-index: 100;
+        transform: scale(0.8);
+    }
+}

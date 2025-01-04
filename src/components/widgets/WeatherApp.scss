@@ -1,0 +1,38 @@
+.weather-app {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 200px;
+    height: 80px;
+    background-image: url(./widget-components/weather-app/cloudy.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 10px;
+    font-size: 0.8rem;
+    padding: 0.3rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    cursor: default;
+    color: var(--white70);
+
+    & h2 {
+        margin-left: auto;
+        margin-right: 0.5rem;
+        font-size: 1.3rem;
+        font-weight: bold;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    & h1 {
+        margin-left: auto;
+        margin-right: 0.5rem;
+        font-size: 1.2rem;
+        font-weight: 500;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    & p {
+        margin-left: auto;
+    }
+}

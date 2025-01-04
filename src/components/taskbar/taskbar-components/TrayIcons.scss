@@ -5,11 +5,13 @@
     gap: 0.5rem;
     position: relative;
 
-    & span {
-        &.expanded .tray-icons__expand-icon {
+    &__expand-icon {
+        color: var(--white70)
+    }
+
+    &.expanded .tray-icons__expand-icon {
             transform: scaleY(-1);
         }
-    }
 
     &__expand-icon {
         transition: transform 0.2s ease-in-out;

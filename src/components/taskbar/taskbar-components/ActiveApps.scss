@@ -1,50 +1,39 @@
 .active-apps {
     width: fit-content;
-    height: 40px;
+    height: 30px;
     color: white;
     display: flex;
-    margin-right: auto;
+    justify-content: center;
     align-items: center;
     gap: 0.2rem;
     cursor: default;
 
     &--app {
         display: flex;
+        justify-content: center;
         align-items: center;
         overflow: hidden;
-        width: 200px;
-        max-height: 38px;
-        padding: 0.4rem 0;
+        width: 40px;
+        height: 25px;
+        padding: 0.2rem 0;
         border-radius: 5px;
-        font-size: 0.8rem;
         border: 0.3px solid rgba(0, 0, 0, 0.5);
         box-shadow: inset 0 0 2px rgba(255, 255, 255, 0.8),
             0 0 2px rgba(255, 255, 255, 0.8);
 
-        &.shrink {
-            justify-content: center;
-            width: 45px;
-
-            & h4 {
-                display: none;
-            }
-        }
-
         & img {
-            width: 25px;
-            margin-left: 0.5rem;
+            width: 20px;
         }
 
         & h4 {
-            margin-left: 0.3rem;
-            font-weight: 400;
-            letter-spacing: 0.8px;
+            display: none;
         }
 
         &:hover {
-            box-shadow: inset -10px -15px 30px -10px rgb(57, 122, 233),
-                inset -15px 0 35px -10px rgb(57, 122, 233),
-                inset 5px 5px 20px rgba(255, 255, 255, 0.8);
+            box-shadow: inset -10px -15px 30px -10px rgb(127, 233, 230),
+            inset -15px 0 35px -10px rgb(104, 178, 176),
+            inset 5px 5px 20px rgba(41, 113, 114, 0.8);
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
         }
 
         &--preview {
@@ -84,4 +73,96 @@
             }
         }
     }
+
+    &__expand {
+        position: relative;
+
+        &-icon {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 25px; 
+
+        }
+    
+        &-menu {
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            bottom: 30px;
+            padding-bottom: 10px;
+            border-radius: 5px; 
+            z-index: 1000;
+            gap: 5px;
+        }
+    }
+}
+
+.active-apps__expand-menu .active-apps--app {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.active-apps__expand-menu .active-apps--app.animate {
+    animation: fadeIn 0.4s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.icon-wrapper {
+    position: absolute;
+    bottom: -1.5px;
+    width: 100%;
+    height: 100%;
+
+    & .active-apps--app {
+        box-shadow: inset -10px -15px 30px -10px rgb(127, 233, 230),
+        inset -15px 0 35px -10px rgb(104, 178, 176),
+        inset 5px 5px 20px rgba(41, 113, 114, 0.8);
+    }
+}
+
+.fade-enter {
+    opacity: 0;
+}
+
+.fade-enter-active {
+    opacity: 1;
+    transition: opacity 500ms;
+}
+
+.fade-exit {
+    opacity: 1;
+}
+
+.fade-exit-active {
+    opacity: 0;
+    transition: opacity 500ms;
+}
+
+.bounce-enter {
+    opacity: 0;
+    transform: translateY(-20px);
+}
+
+.bounce-enter-active {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 300ms, transform 300ms;
+}
+
+.bounce-exit {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.bounce-exit-active {
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 300ms, transform 300ms;
 }
