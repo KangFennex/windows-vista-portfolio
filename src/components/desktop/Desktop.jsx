@@ -1,6 +1,6 @@
 import "./Desktop.scss";
 import desktopIcons from "../desktop/desktop-components/desktop-icons/desktopIcons";
-import Draggable from "react-draggable";
+import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 import Msn from "../apps/Msn";
 import TodoApp from "../widgets/TodoApp";
@@ -21,6 +21,13 @@ const DesktopIcon = ({ icon, handleDisplayApp }) => {
 }
 
 const Desktop = ({ displayMsn, handleDisplayApp }) => {
+    const [Draggable, setDraggable] = useState(null);
+
+    useEffect(() => {
+      import('react-draggable').then(module => setDraggable(() => module.default));
+    }, []);
+  
+    if (!Draggable) return null;
 
     return (
         <div className="desktop">
