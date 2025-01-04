@@ -6,7 +6,7 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      external: ['react-transition-group', 'uuid'],
+      external: ['react-transition-group', 'react-draggable'],
     },
   },
 })
