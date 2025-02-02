@@ -1,6 +1,5 @@
 import "./Desktop.scss";
 import desktopIcons from "./components/desktopIcons";
-import desktopPdfs from "./components/desktopPdfs";
 import { v4 as uuidv4 } from "uuid";
 import Draggable from "react-draggable";
 import Msn from "../apps/messenger/Msn";
@@ -13,12 +12,20 @@ import Window from "../apps/viewer/Viewer";
 import Features from "../content/features/features";
 import About from "../content/about/About";
 import Pdf from "../apps/pdf/Pdf";
-import { useAppLogic } from "../../hooks/AppLogic";
-import Resume from "../content/resume/Resume";
 
-const Desktop = ({ displayMsn, displayTech, handleDisplayApp, displayDocuments, displayProjects, folderPositions, handleDisplayPdf, handleCloseTab, openedPdfs, activeTab, setActiveTab, handleActiveTab }) => {
+const DesktopIcon = ({ icon, handleDisplayApp }) => {
+    return (
+        <div className="desktop__main__icon"
+            key={uuidv4()}
+            onDoubleClick={() => handleDisplayApp(icon.value)}
+        >
+            <img src={icon.icon} alt={icon.alt} />
+            <p>{icon.value}</p>
+        </div>
+    )
+};
 
-    const { DesktopIcon, DesktopPdf } = useAppLogic();
+const Desktop = ({ displayMsn, displayTech, handleDisplayApp, displayDocuments, displayProjects, folderPositions, displayAbout, displayFeatures }) => {
 
     return (
         <div className="desktop">
@@ -26,27 +33,14 @@ const Desktop = ({ displayMsn, displayTech, handleDisplayApp, displayDocuments, 
             <section className="desktop__main">
 
                 <div className="desktop__main__icons">
-
                     {desktopIcons.map(icon => (
                         <Draggable
-                            key={uuidv4()}>
+                            key={uuidv4()}
+                        >
                             <div>
                                 <DesktopIcon
                                     icon={icon}
-                                    handleDisplayApp={handleDisplayApp}
-                                />
-                            </div>
-                        </Draggable>
-                    ))}
-
-                    {desktopPdfs.map(pdf => (
-                        <Draggable
-                            key={uuidv4()}>
-                            <div>
-                                <DesktopPdf
-                                    pdf={pdf}
-                                    handleDisplayPdf={handleDisplayPdf}
-                                />
+                                    handleDisplayApp={handleDisplayApp} />
                             </div>
                         </Draggable>
                     ))}
@@ -55,36 +49,39 @@ const Desktop = ({ displayMsn, displayTech, handleDisplayApp, displayDocuments, 
 
                 <div className="desktop__main__pdfs">
 
-                    {openedPdfs.length > 0 && (
+                {displayAbout && (
                         <Draggable
                             key={uuidv4()}
-                            defaultPosition={{ x: 100, y: -400 }}
+                            defaultPosition={folderPositions.About}
                         >
                             <div style={{ position: "absolute" }}>
-                                <Pdf
-                                    handleCloseTab={handleCloseTab}
-                                    openedPdfs={openedPdfs}
-                                    activeTab={activeTab}
-                                    setActiveTab={setActiveTab}
-                                    handleActiveTab={handleActiveTab}
+                            <Pdf
+                                handleDisplayApp={handleDisplayApp}
+                                openedPdf="About"
+                                displayAbout={displayAbout}
+                                displayFeatures={displayFeatures}
                                 >
-                                    {openedPdfs.map((pdf) => (
-                                        <div
-                                            key={pdf}
-                                            style={{
-                                                display:
-                                                    activeTab === pdf
-                                                        ? "block"
-                                                        : "none",
-                                            }}
-                                        >
-                                            {pdf === "About" && <About />}
-                                            {pdf === "Features" && <Features />}
-                                            {pdf === "Resume" && <Resume />}
-                                        </div>
-                                    ))}
-                                </Pdf>
+                                <About />
+                            </Pdf>
                             </div>
+                        </Draggable>
+                    )}
+                    
+                    {displayFeatures && (
+                        <Draggable
+                            key={uuidv4()}
+                            defaultPosition={folderPositions.Features}
+                        >
+                        <div style={{ position: "absolute" }}>
+                            <Pdf
+                                handleDisplayApp={handleDisplayApp}
+                                openedPdf="Features"
+                                displayAbout={displayAbout}
+                                displayFeatures={displayFeatures}
+                                >
+                                <Features />
+                            </Pdf>
+                        </div>
                         </Draggable>
                     )}
 
@@ -139,13 +136,13 @@ const Desktop = ({ displayMsn, displayTech, handleDisplayApp, displayDocuments, 
 
                 <div className="desktop__main__apps">
 
-{/*
                     {displayMsn && (
                         <div className="desktop__msn">
                             <Msn handleDisplayApp={handleDisplayApp} />
                         </div>
                     )}
 
+                    {/*
                     <div className="desktop__winamp">
                         <Winamp />
                     </div>
@@ -154,7 +151,7 @@ const Desktop = ({ displayMsn, displayTech, handleDisplayApp, displayDocuments, 
                 </div>
             </section>
 
-{/*
+            {/*
             <section className="desktop__widgets">
 
                 <div className="desktop__weather-app">
@@ -170,7 +167,7 @@ const Desktop = ({ displayMsn, displayTech, handleDisplayApp, displayDocuments, 
                 </div>
 
             </section>
-*/}
+            */}
         </div>
     )
 }

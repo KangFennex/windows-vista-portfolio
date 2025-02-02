@@ -1,0 +1,172 @@
+.pdf {
+    position: absolute;
+    width: 400px;
+    height: 500px;
+    z-index: 2;
+    overflow: hidden;
+
+    &__container {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        border-radius: 10px;
+    }
+
+    &__header {
+        width: 100%;
+        min-height: 30px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 0.5rem;
+        color: var(--white70);
+
+        &__menu {
+            height: 100%;
+            width: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &--icon {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                padding: 0 5px;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.3);
+                }
+            }
+
+            &--home {
+                height: 100%;
+                display: flex;
+                align-items: center;
+                padding: 0 5px;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.3);
+                }
+            };
+        }
+
+        &__tabs {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            width: auto;
+            padding-top: 3px;
+            margin-right: auto;
+            margin-left: 1rem;
+            font-size: 0.6rem;
+            overflow-x: hidden;
+
+            &--tab {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                min-width: 60px;
+                width: auto;
+                gap: 5px;
+                border-top-left-radius: 3px;
+                border-top-right-radius: 3px;
+                padding: 0 0.7rem;
+                background-color: rgb(33, 33, 33);
+                cursor: default;
+                transition: all 0.3s ease;
+
+                &.activeTab {
+                    min-width: 120px;
+                    background-color: rgb(60, 70, 70);
+                    padding: 0 0.4rem;
+                }
+
+                &-star {
+                    color: default;
+                    transition: all 0.3s ease;
+                    
+                    &:hover {
+                        color: rgb(78, 131, 231);
+                    }
+                }
+
+                &-close {
+                    margin-left: auto;
+                    color: default;
+                    transition: all 0.3s ease;
+
+                    &:hover {
+                        color: #fff;
+                    }
+                }
+            }
+        }
+
+        &__buttons {
+            height: 100%;
+            min-width: 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            &--button {
+                height: 100%;
+
+                &:hover {
+                    background-color: rgba(255, 255, 255, 0.3);
+                }
+            }
+        }
+    }
+
+    &__tools {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        height: 30px;
+        background-color: rgb(69, 70, 70);
+        color: var(--white70);
+        font-size: 0.9rem;
+        padding: 1.2rem 0.6rem;
+        padding-right: 2rem;
+        cursor: default;
+
+        &--tool {
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+    }
+
+    &__side-panel {
+        width: 30px;
+        height: 87%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+        position: absolute;
+        top: 68px;
+        right: 0;
+        background-color: rgb(69, 70, 70);
+        border-bottom-right-radius: 10px;
+        color: var(--white70);
+        cursor: default;
+    }
+
+    &__content {
+        overflow: auto;
+        padding: 2rem;
+        margin-right: 30px;
+        height: 400px;
+        overflow: hidden;
+    
+            & p {
+                color: var(--white70);
+            }
+    }
+}

@@ -1,12 +1,11 @@
 import "./Taskbar.scss";
 import { useState } from "react";
-import TaskbarClock from "./taskbar-components/TaskbarClock";
-import StartMenu from "./taskbar-components/StartMenu";
-import ActiveApps from "./taskbar-components/ActiveApps";
+import TaskbarClock from "./components/TaskbarClock";
+import StartMenu from "../start-menu/StartMenu";
+import ActiveApps from "./components/ActiveApps";
 import { AnimatePresence, motion } from "framer-motion";
-import TrayIcons from "./taskbar-components/TrayIcons";
-import ShortcutsApps from "./taskbar-components/ShortcutsApps";
-import calcWindowSize from "../utils/calcWindowSize";
+import TrayIcons from "./components/TrayIcons";
+import calcWindowSize from "../../utils/calcWindowSize";
 import fennec from "../../assets/start-menu/Renard-logo.png";
 
 const springFromBottom = {
@@ -33,9 +32,9 @@ const springFromBottom = {
     },
 };
 
-const Taskbar = ({ handleDisplayApp }) => {
+const Taskbar = ({ handleDisplayApp, openedFolders }) => {
     const [displayStartMenu, setDisplayStartMenu] = useState(false);
-    const [taskbarApps, setTaskbarApps] = useState(["Firefox", "MSN", "Emule", "Excel", "Word", "Notepad", "Winamp", "Nero", "Daemon"]);
+    const [taskbarApps, setTaskbarApps] = useState(["Firefox", "MSN", "Emule", "Word", "Notepad", "Winamp", "Nero", "Daemon"]);
     const { width } = calcWindowSize();
 
     const handleDisplayStartMenu = () => {
@@ -75,7 +74,6 @@ const Taskbar = ({ handleDisplayApp }) => {
                             </AnimatePresence>
                     )}
 
-
                     <div className="taskbar__start-menu">
                         <img
                             alt="Start Menu Icon"
@@ -84,16 +82,20 @@ const Taskbar = ({ handleDisplayApp }) => {
                             onClick={handleDisplayStartMenu}
                         />
                     </div>
+                    {/*
                             <nav className="taskbar__icons">
                                 <ShortcutsApps
                                     handleAddTaskbarApps={handleAddTaskbarApps}
                                     handleDisplayApp={handleDisplayApp}
                                 />
                             </nav>
+                    */}
                             <nav className="taskbar__apps">
                                 <ActiveApps
                                     taskbarApps={taskbarApps}
-                                    handleRemoveTaskbarApp={handleRemoveTaskbarApp} />
+                                    handleRemoveTaskbarApp={handleRemoveTaskbarApp}
+                                    openedFolders={openedFolders}
+                                    />
                             </nav>
                             <div className="taskbar__system-icons-and-time">
                                 <div className="taskbar__system-icons">

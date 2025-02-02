@@ -4,15 +4,20 @@
     display: flex;
     background-image: url("../../assets/background/leaves-bg.jpg");
     background-size: cover;
-    position: relative;
+    z-index: 1;
 
     &__main {
         width: 100%;
         height: 100%;
-        position: absolute;
-        left: 0;
+        position: relative;
 
-        &__icons {}
+        &__icons {
+            display: flex;
+            flex-direction: column;
+            flex-wrap: wrap;
+            max-height: 90vh;
+            width: fit-content;
+        }
 
         &__icon {
             display: flex;
@@ -45,8 +50,12 @@
                 text-align: center;
             }
         }
-    }
 
+        &__pdfs {
+            width: fit-content;
+            z-index: 3;
+        }
+    }
 
     &__widgets {
         width: 220px;
@@ -60,9 +69,25 @@
         gap: 1rem;
         padding-top: 1rem;
         padding-bottom: 60px;
+        z-index: 3;
     }
 
-    &__todo {}
+    &__tech {
+        display: flex;
+        justify-content: center;
+        z-index: 100;
+    }
 
-    &__weather-app {}
+    &__weather-app {
+        z-index: 1;
+    }
+
+    &__sticky-note {
+        z-index: 2;
+    }
+
+    &__todo {
+        z-index: 1;
+    }
+
 }
